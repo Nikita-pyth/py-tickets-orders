@@ -97,7 +97,7 @@ class MovieSessionViewSet(viewsets.ModelViewSet):
                     tickets_available=ExpressionWrapper(
                         F("cinema_hall__rows")
                         * F("cinema_hall__seats_in_row")
-                        - Count("tickets"),
+                        - Count("tickets", distinct=True),
                         output_field=IntegerField()
                     )
                 )
